@@ -11,7 +11,7 @@ public class CameraBehaviour : MonoBehaviour
     private float m_fLBound = 10.0f;
     [SerializeField]
     private float m_fRBound = 10.0f;
-
+    [SerializeField]
     private Vector3 m_v3CameraVelocity;
     [SerializeField]
     private float m_fCameraSpeed = 1.0f;
@@ -50,8 +50,22 @@ public class CameraBehaviour : MonoBehaviour
         m_v3CameraVelocity = Vector3.zero;
 
         // Get Player
-        GameObject player = GameObject.FindGameObjectWithTag("Player1");
-        if(player != null)
+        GameObject player1 = GameObject.FindGameObjectWithTag("Player1");
+        GameObject player2 = GameObject.FindGameObjectWithTag("Player2");
+        HandleCameraBounds(player1);
+        HandleCameraBounds(player2);
+	}
+
+    void FixedUpdate()
+    {
+        Debug.Log(m_v3CameraVelocity.ToString());
+        m_v3CameraVelocity.Normalize();
+        transform.position = transform.position + m_v3CameraVelocity * m_fCameraSpeed * Time.fixedDeltaTime;
+    }
+
+    void HandleCameraBounds(GameObject player)
+    {
+        if (player != null)
         {
             Vector3 topPlayerBound =    camera.WorldToScreenPoint(player.transform.position + Vector3.forward * 1.0f);
             Vector3 bottomPlayerBound = camera.WorldToScreenPoint(player.transform.position + Vector3.back * 1.0f);
@@ -59,18 +73,23 @@ public class CameraBehaviour : MonoBehaviour
             Vector3 leftPlayerBound =   camera.WorldToScreenPoint(player.transform.position + Vector3.left * 1.0f);
 
             if (topPlayerBound.y > TopCameraBound)
+            {
                 m_v3CameraVelocity += Vector3.forward;
+            }
             if (bottomPlayerBound.y < BottomCameraBound)
+            {
                 m_v3CameraVelocity += Vector3.back;
+            }
             if (rightPlayerBound.x > RightCameraBound)
+            {
                 m_v3CameraVelocity += Vector3.right;
+            }
             if (leftPlayerBound.x < LeftCameraBound)
+            {
                 m_v3CameraVelocity += Vector3.left;
+            }
         }
-
-        m_v3CameraVelocity.Normalize();
-        transform.position = transform.position + m_v3CameraVelocity * m_fCameraSpeed * Time.deltaTime;
-	}
+    }
 
     void OnDrawGizmos()
     {
@@ -103,28 +122,18 @@ public class CameraBehaviour : MonoBehaviour
         Gizmos.DrawLine(tl, bl);
         Gizmos.DrawLine(tr, br);
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = GameObject.FindGameObjectWithTag("Player1");
         if (player != null)
         {
             Vector3 playerScreenPos = camera.WorldToScreenPoint(player.transform.position);
             Gizmos.DrawWireSphere(camera.ScreenToWorldPoint(playerScreenPos), 1.0f);
         }
 
-        //// Grid Drawing
-        //Gizmos.color = Color.blue;
-        //for (int row = 0; row < m_iGridSize+1; row++)
-        //{
-        //    Vector3 left = new Vector3(-m_iGridSize * 0.5f, 0, row - m_iGridSize * 0.5f);
-        //    Vector3 right = new Vector3(m_iGridSize * 0.5f, 0, row - m_iGridSize * 0.5f);
-        //    Gizmos.DrawLine(left, right);
-            
-        //}
-
-        //for (int col = 0; col < m_iGridSize+1; col++)
-        //{
-        //    Vector3 top = new Vector3(col - m_iGridSize * 0.5f, 0, -m_iGridSize * 0.5f);
-        //    Vector3 bot = new Vector3(col - m_iGridSize * 0.5f, 0, m_iGridSize * 0.5f);
-        //    Gizmos.DrawLine(top, bot);
-        //}
+        GameObject player2 = GameObject.FindGameObjectWithTag("Player2");
+        if (player2 != null)
+        {
+            Vector3 playerScreenPos = camera.WorldToScreenPoint(player2.transform.position);
+            Gizmos.DrawWireSphere(camera.ScreenToWorldPoint(playerScreenPos), 1.0f);
+        }
     }
 }
