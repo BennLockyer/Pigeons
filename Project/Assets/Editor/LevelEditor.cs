@@ -222,18 +222,19 @@ public class LevelEditor : EditorWindow
 					{
 					case 1:
 						modelName = "model_corner";
-						rotation = 180;
+						rotation = 270;
 						break;
 					case 2:
 						modelName = "model_corner";
-						rotation = 270;
+						rotation = 0;
 						break;
 					case 3:
 						modelName = "model_corner";
+						rotation = 90;
 						break;
 					case 4:
 						modelName = "model_corner";
-						rotation = 90;
+						rotation = 180;
 						break;
 					case 5:
 						modelName = "model_straight";
@@ -244,36 +245,38 @@ public class LevelEditor : EditorWindow
 						break;
 					case 7:
 						modelName = "model_t";
-						rotation = 90;
+						rotation = 270;
 						break;
 					case 8:
 						modelName = "model_t";
-						rotation = 180;
+						rotation = 0;
 						break;
 					case 9:
 						modelName = "model_t";
-						rotation = 270;
+						rotation = 90;
 						break;
 					case 10:
 						modelName = "model_t";
+						rotation = 180;
 						break;
 					case 11:
 						modelName = "model_cross";
 						break;
 					case 12:
 						modelName = "model_end";
-						rotation = 180;
+						rotation = 0;
 						break;
 					case 13:
 						modelName = "model_end";
-						rotation = 270;
+						rotation = 90;
 						break;
 					case 14:
 						modelName = "model_end";
+						rotation = 180;
 						break;
 					case 15:
 						modelName = "model_end";
-						rotation = 90;
+						rotation = 270;
 						break;
 					}
 					GameObject t = Resources.Load<GameObject>("Tiles/" + modelName);
