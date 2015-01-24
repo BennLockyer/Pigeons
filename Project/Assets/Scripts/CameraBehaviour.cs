@@ -16,6 +16,8 @@ public class CameraBehaviour : MonoBehaviour
     [SerializeField]
     private float m_fCameraSpeed = 1.0f;
 
+    private Vector3 m_v3ScreenTargetPos;
+
     // In screen space
     public float TopCameraBound
     {
@@ -58,7 +60,16 @@ public class CameraBehaviour : MonoBehaviour
         HandleCameraBounds(m_player1Behaviour, m_player2Behaviour);
         HandleCameraBounds(m_player2Behaviour, m_player1Behaviour);
 
-        transform.position = transform.position + m_v3CameraVelocity * m_fCameraSpeed * Time.deltaTime;
+        ///transform.position = transform.position + m_v3CameraVelocity * m_fCameraSpeed * Time.deltaTime;
+        ///
+        Vector3 pos = transform.position;
+        Vector3 ScreenPos = camera.WorldToScreenPoint(pos);
+        
+        ScreenPos = camera.ScreenToWorldPoint(ScreenPos + m_v3ScreenTargetPos);
+        m_v3ScreenTargetPos = Vector3.zero;
+
+        pos.z = Mathf.Lerp(pos.z, ScreenPos.z, Time.deltaTime * 10.0f);
+        transform.position = pos;
 	}
 
     void HandleCameraBounds(PlayerBehaviour a_player1, PlayerBehaviour a_player2)
@@ -67,8 +78,13 @@ public class CameraBehaviour : MonoBehaviour
         {
             if (a_player1.IsPlayerOutOfTopBound() && !a_player2.IsPlayerOutOfBottomBound())
             {
-                if (a_player1.transform.forward.z > 0.0f)
-                    m_v3CameraVelocity.z += a_player1.transform.forward.z;
+                //if (a_player1.transform.forward.z > 0.0f)
+                //    m_v3CameraVelocity.z += a_player1.transform.forward.z;
+                Vector3 screenPos = camera.WorldToScreenPoint(a_player1.transform.position);
+                float TopDist = screenPos.y - TopCameraBound;
+               // Debug.Log(TopDist.ToString());
+                m_v3ScreenTargetPos.y = TopDist;
+                m_v3ScreenTargetPos.z = 1.0f;
             }
             if (a_player1.IsPlayerOutOfBottomBound() && !a_player2.IsPlayerOutOfTopBound())
             {
@@ -106,24 +122,33 @@ public class CameraBehaviour : MonoBehaviour
         bl.x = LeftCameraBound;
         bl.y = BottomCameraBound;
 
-        br.x = RightCameraBound;
+        br.x = RightCameraBound;    
         br.y = BottomCameraBound;
 
         tl = camera.ScreenToWorldPoint(tl);
         tr = camera.ScreenToWorldPoint(tr);
         bl = camera.ScreenToWorldPoint(bl);
-        br = camera.ScreenToWorldPoint(br);
+        br = camera.ScreenToWorldPoint(br);   
 
         Gizmos.DrawLine(tl, tr);
         Gizmos.DrawLine(bl, br);
         Gizmos.DrawLine(tl, bl);
         Gizmos.DrawLine(tr, br);
 
+        Vector3 targetPos = Vector3.zero;
         GameObject player = GameObject.FindGameObjectWithTag("Player1");
         if (player != null)
         {
             Vector3 playerScreenPos = camera.WorldToScreenPoint(player.transform.position);
-            Gizmos.DrawWireSphere(camera.ScreenToWorldPoint(playerScreenPos), 1.0f);
+
+            
+            
+            Vector3 BoundPos = playerScreenPos;
+            BoundPos.y = TopCameraBound;
+
+            targetPos = new Vector3(Screen.width / 2, Screen.height / 2 + (playerScreenPos.y - TopCameraBound), 1.0f);
+            targetPos = camera.ScreenToWorldPoint(targetPos);
+            Gizmos.DrawLine(camera.ScreenToWorldPoint(BoundPos), camera.ScreenToWorldPoint(playerScreenPos));
         }
 
         GameObject player2 = GameObject.FindGameObjectWithTag("Player2");
@@ -132,5 +157,11 @@ public class CameraBehaviour : MonoBehaviour
             Vector3 playerScreenPos = camera.WorldToScreenPoint(player2.transform.position);
             Gizmos.DrawWireSphere(camera.ScreenToWorldPoint(playerScreenPos), 1.0f);
         }
+
+        Vector3 centreScreen = new Vector3(Screen.width / 2, Screen.height / 2, 1.0f);
+        centreScreen = camera.ScreenToWorldPoint(centreScreen);
+
+        Gizmos.DrawLine(centreScreen, targetPos);
+        Gizmos.DrawLine(centreScreen, transform.position);
     }
 }

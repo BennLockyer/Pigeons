@@ -49,7 +49,7 @@ public class PlayerBehaviour : MonoBehaviour
 		    	RaycastHit hit1;
 		    	if(!Physics.Raycast(transform.position,transform.forward,out hit1,1.0f))
 		    	{
-                    if (CheckBounds() == false)
+                    //if (CheckBounds() == false)
                     {
                         transform.Translate(Vector3.forward * m_fMoveSpeed * Time.deltaTime);
                     }
