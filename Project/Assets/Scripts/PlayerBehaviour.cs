@@ -39,10 +39,13 @@ public class PlayerBehaviour : MonoBehaviour
     	
     	if(distance > 1.0f)
     	{
-    		transform.LookAt(temp);
+    		//transform.LookAt(temp);
+    		Vector3 targetDir = temp - transform.position;
+    		Vector3 newDir = Vector3.RotateTowards(transform.forward,targetDir,8 * Time.deltaTime,0.0f);
+    		transform.rotation = Quaternion.LookRotation(newDir);
 			float angle = Vector3.Angle(transform.forward,temp-transform.position);
 			
- 			if(angle < 10.0f)
+ 			if(angle < 5.0f)
  			{
 		    	RaycastHit hit1;
 		    	if(!Physics.Raycast(transform.position,transform.forward,out hit1,1.0f))
