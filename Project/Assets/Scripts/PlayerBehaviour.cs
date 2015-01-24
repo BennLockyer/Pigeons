@@ -72,55 +72,43 @@ public class PlayerBehaviour : MonoBehaviour
 
                 if (Physics.Raycast(transform.position, -transform.right, out hit1, 1.0f))
                 {
-                    Debug.Log("left Hit");
                     isLeftHit = true;
                     float dist = 0.5f - hit1.distance;
                     playerVelocity += hit1.normal * dist;
                 }
-
                 
+                if (Physics.Raycast(transform.position, transform.forward, out hit1, 1.0f))
                 {
-                    if (Physics.Raycast(transform.position, transform.forward, out hit1, 1.0f))
+                    Vector3 moveDir = Vector3.zero;
+                    float vTest = Vector3.Dot(hit1.normal, Vector3.forward);
+                    float hTest = Vector3.Dot(hit1.normal, Vector3.right);
+
+                    float dist = 0.5f - hit1.distance;
+                    playerVelocity += hit1.normal * dist;
+
+                    if (!(isLeftHit == true && isRightHit == true))
                     {
-                        Vector3 moveDir = Vector3.zero;
-                        float vTest = Vector3.Dot(hit1.normal, Vector3.forward);
-                        float hTest = Vector3.Dot(hit1.normal, Vector3.right);
-
-                        float dist = 0.5f - hit1.distance;
-                        playerVelocity += hit1.normal * dist;
-
-                        if (!(isLeftHit == true && isRightHit == true))
+                        if (vTest >= 0.95f || vTest <= -0.95f)
                         {
-                            if (vTest >= 0.95f || vTest <= -0.95f)
-                            {
-                                playerStatus = "Move Horizontal";
-                                moveDir.x = transform.forward.x;
-                            }
-                            if (hTest >= 0.95f || hTest <= -0.95f)
-                            {
-                                playerStatus = "Move Vertical";
-                                moveDir.z = transform.forward.z;
-                            }
-                            else
-                                playerStatus = "Not Moving";
-
-                            playerVelocity += moveDir;
+                            moveDir.x = transform.forward.x;
                         }
-                    }
-                    else
-                    {
-                        if (!(isLeftHit == true && isRightHit == true))
+                        if (hTest >= 0.95f || hTest <= -0.95f)
                         {
-                            if (CheckBounds() == false)
-                            {
-                                playerStatus = "Moving";
-                                playerVelocity += transform.forward;
-                            }
+                            moveDir.z = transform.forward.z;
                         }
+
+                        playerVelocity += moveDir;
                     }
                 }
-
-                transform.Translate(playerVelocity * m_fMoveSpeed * Time.deltaTime, Space.World);
+                else
+                {
+                    if (!(isLeftHit == true && isRightHit == true))
+                        playerVelocity += transform.forward;
+                }
+                if (CheckBounds() == false)
+                {
+                    transform.Translate(playerVelocity * m_fMoveSpeed * Time.deltaTime, Space.World);
+                }
 	    	}
 	    }
 	}
