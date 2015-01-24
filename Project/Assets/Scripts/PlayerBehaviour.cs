@@ -8,6 +8,9 @@ public class PlayerBehaviour : MonoBehaviour
     private float m_fMoveSpeed;
     private Vector3 m_v3MoveDirection;
 	
+	private string hMovement;
+	private string vMovement;
+	
     void Awake()
     {
     }
@@ -15,21 +18,37 @@ public class PlayerBehaviour : MonoBehaviour
 	void Start () 
     {
         m_pCameraBehaviour = Camera.main.GetComponent<CameraBehaviour>();
+        if(gameObject.tag == "Player1")
+        {
+        	hMovement = "Horizontal1";
+        	vMovement = "Vertical1";
+        }
+        if(gameObject.tag == "Player2")
+        {
+        	hMovement = "Horizontal2";
+        	vMovement = "Vertical2";
+        }
 	}
 
 	void Update () 
     {
     	//maybe use 'getaxis' to cater for more than 8-way direction
-    	Vector3 temp = new Vector3(transform.position.x + (2 * Input.GetAxisRaw("Horizontal1")),transform.position.y,transform.position.z + (2*Input.GetAxisRaw("Vertical")));
+    	Vector3 temp = new Vector3(transform.position.x + (2 * Input.GetAxisRaw(hMovement)),transform.position.y,transform.position.z + (2*Input.GetAxisRaw(vMovement)));
     	float distance = Vector3.Distance(transform.position,temp);
-    	if(distance > 0.5f)
+    	
+    	
+    	if(distance > 1.0f)
     	{
     		transform.LookAt(temp);
- 
-	    	RaycastHit hit1;
-	    	if(!Physics.Raycast(transform.position,transform.forward,out hit1,1.0f))
-	    	{
-	    		transform.Translate(Vector3.forward * m_fMoveSpeed * Time.deltaTime);
+			float angle = Vector3.Angle(transform.forward,temp-transform.position);
+			
+ 			if(angle < 10.0f)
+ 			{
+		    	RaycastHit hit1;
+		    	if(!Physics.Raycast(transform.position,transform.forward,out hit1,1.0f))
+		    	{
+		    		transform.Translate(Vector3.forward * m_fMoveSpeed * Time.deltaTime);
+		    	}
 	    	}
 	    }
 //        m_v3MoveDirection = Vector3.zero;

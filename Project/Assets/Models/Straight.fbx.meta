@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8f7fdab5814d54e4aaf0ad10e4f25d7f
+guid: 21f04ce3b31fb2f4f80dc60be1e985ea
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
@@ -7,7 +7,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cross_Section
+    4300000: Striaght
     6400000: //RootNode
     9500000: //RootNode
   materials:
