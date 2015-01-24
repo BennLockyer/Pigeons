@@ -4,15 +4,19 @@ using UnityEditor;
 
 public class LevelEditor : EditorWindow 
 {
+	//Make the menu heading
 	[MenuItem("GameJam/Level Editor")]
 	
+	//Show the window
 	public static void ShowWindow()
 	{
 		EditorWindow.GetWindow(typeof(LevelEditor));
 	}
 	
+	//Make an array for our grid in the editor
 	private int[,] index = new int[16,16];
 	
+	//Create a bunch of materials for drawing on the buttons
 	private Material empty = null;
 	private Material corner = null;
 	private Material corner90 = null;
@@ -31,18 +35,22 @@ public class LevelEditor : EditorWindow
 	private Material deadend270 = null;
 	private Material[] materials = new Material[16];
 	
+	//Create some offsets - this lets us align more rooms if it needs to be bigger than 16x16
 	private int xOffset;
 	private int yOffset;
 	
+	//Check to see if our buttons are being used -- this makes sure we don't make changes by accident
 	private bool checkClear = false;
 	private bool checkGrid = false;
 	private bool checkGenerate = false;
 	
+	//Some text which shows what's happening
 	private string warningText = "This is a message";
-	private GameObject tile;
-	
+		
+	//When the screen opens
 	void OnEnable()
 	{
+		//Load an index based on button position in the grid
 		for(int x = 0; x < 16; ++x)
 		{
 			for(int y = 0; y < 16; ++y)
@@ -51,6 +59,7 @@ public class LevelEditor : EditorWindow
 			}
 		}
 		
+		//Load all of the textures from the resources/materials folder
 		empty = Resources.Load<Material>("Materials/m_empty");
 		corner = Resources.Load<Material>("Materials/m_corner");
 		corner90 = Resources.Load<Material>("Materials/m_corner90");
@@ -67,6 +76,7 @@ public class LevelEditor : EditorWindow
 		deadend90 = Resources.Load<Material>("Materials/m_deadend90");
 		deadend180 = Resources.Load<Material>("Materials/m_deadend180");
 		deadend270 = Resources.Load<Material>("Materials/m_deadend270");
+		//Assign the materials into an array
 		materials[0] = empty;
 		materials[1] = corner;
 		materials[2] = corner90;
@@ -83,9 +93,9 @@ public class LevelEditor : EditorWindow
 		materials[13] = deadend90;
 		materials[14] = deadend180;
 		materials[15] = deadend270;
-		tile = Resources.Load<GameObject>("Cube");
 	}
 	
+	//When we close the window we save the index so that the layout is the same when we open it
 	void OnDisable()
 	{
 		for(int x = 0; x < 16; ++x)
@@ -97,24 +107,27 @@ public class LevelEditor : EditorWindow
 		}
 	}
 	
+	//Draw stuff!
 	void OnGUI()
 	{
+		//Draw the buttons
 		for(int y = 15; y > -1; --y)
 		{
 			GUILayout.BeginHorizontal();
 			for(int x = 0; x < 16; ++x)
 			{
+				//See if we've pressed a button
 				if(GUILayout.Button(materials[index[x,y]].GetTexture("_MainTex"),GUILayout.Width(35),GUILayout.Height(35)))
 				{
 					Event e = Event.current;
-					
+					//Left click counts forward through index (images)
 					if(e.button == 0)
 					{
 						++index[x,y];
 						if(index[x,y] == materials.Length)
 							index[x,y] = 0;
 					}
-					
+					//Right click counts backwards
 					if(e.button == 1)
 					{
 						--index[x,y];
@@ -125,15 +138,19 @@ public class LevelEditor : EditorWindow
 			}
 			GUILayout.EndHorizontal();
 		}
+		//Draw an area for us to enter our offset values (1 = a single 16x16 gridspace
 		GUILayout.BeginHorizontal();
 		xOffset = EditorGUILayout.IntField("x offset: ",xOffset,GUILayout.Width(200));
 		yOffset = EditorGUILayout.IntField("y offset: ",yOffset,GUILayout.Width(200));
 		GUILayout.EndHorizontal();
+		//Draw more buttons
 		GUILayout.BeginHorizontal();
+		//If we're not confiring anything, draw the 'generate', 'clear grid' and 'clear scene' buttons
 		if(!checkClear && !checkGrid && !checkGenerate)
 		{
 			if(GUILayout.Button("Generate",GUILayout.Width(100),GUILayout.Height(30)))
 			{
+				//Create the prefabs
 				checkGenerate = true;
 				warningText = "Generate the grid into the game?";
 			}
@@ -141,17 +158,20 @@ public class LevelEditor : EditorWindow
 			
 			if(GUILayout.Button("Clear Grid",GUILayout.Width(100),GUILayout.Height(30)))
 			{
+				//Clear the grid in the editor
 				checkGrid = true;
 				warningText = "Are you sure you want to clear the grid?";
 			}
 			if(GUILayout.Button("Clear Scene",GUILayout.Width(100),GUILayout.Height(30)))
 			{
+				//Destroy all of the tiles in the level
 				checkClear = true;
 				warningText = "Are you sure you want to clear the scene?";
 			}
 		}
 		else
 		{
+			//If we have clicked a button, replace them with confirmation buttons
 			if(GUILayout.Button("YES",GUILayout.Width(100),GUILayout.Height(30)))
 			{
 				if(checkGrid)
@@ -257,8 +277,9 @@ public class LevelEditor : EditorWindow
 						break;
 					}
 					GameObject t = Resources.Load<GameObject>("Tiles/" + modelName);
-					GameObject u = (GameObject)Instantiate (t,new Vector3(x+(16*xOffset),0,y+(16*yOffset)),Quaternion.identity);
+					GameObject u = (GameObject)Instantiate (t,new Vector3((x*5)+(80*xOffset),0,(y*5)+(80*yOffset)),Quaternion.identity);
 					u.transform.eulerAngles = new Vector3(0,rotation,0);
+					u.transform.parent = GameObject.Find ("_Tiles").transform;
 //					GameObject t = (GameObject)Instantiate(tile,new Vector3(x+(16*xOffset),0,y+(16*yOffset)),Quaternion.identity);
 //					t.renderer.material = materials[index[x,y]];
 				}
