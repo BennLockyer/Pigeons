@@ -46,7 +46,8 @@ public class TriggerController : MonoBehaviour
 				//If this is a portal, let's use it!
 				if(triggerType == TriggerType.Portal && canUse)
 				{
-					StartCoroutine("ActivatePortal",other.gameObject);
+					if(targetPortal != null)
+						StartCoroutine("ActivatePortal",other.gameObject);
 				}
 				//If this is the end position, let's check if the other player is done, too!
 				if(triggerType == TriggerType.EndGame)

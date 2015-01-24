@@ -13,6 +13,9 @@ public class PlayerBehaviour : MonoBehaviour
 	private string vMovement;
 
     private string playerStatus;
+    
+    public GameObject annoyParticles;
+    private bool canPlay = true;
 	
     void Awake()
     {
@@ -41,6 +44,19 @@ public class PlayerBehaviour : MonoBehaviour
 
 	void Update () 
     {
+    	if((gameObject.tag == "Player1" && Input.GetButtonDown("Fire1")) || (gameObject.tag == "Player2" && Input.GetButtonDown("Fire2")))
+    	{
+			if(gameObject.tag == "Player1")
+			{
+				GameObject p2 = GameObject.FindGameObjectWithTag("Player2");
+				p2.GetComponent<PlayerBehaviour>().CheckAnnoy();
+			}
+			if(gameObject.tag == "Player2")
+			{
+				GameObject p2 = GameObject.FindGameObjectWithTag("Player1");
+				p2.GetComponent<PlayerBehaviour>().CheckAnnoy();
+			}
+    	}
     	//maybe use 'getaxis' to cater for more than 8-way direction
     	Vector3 temp = new Vector3(transform.position.x + (2 * Input.GetAxisRaw(hMovement)),transform.position.y,transform.position.z + (2*Input.GetAxisRaw(vMovement)));
     	float distance = Vector3.Distance(transform.position,temp);
@@ -111,6 +127,21 @@ public class PlayerBehaviour : MonoBehaviour
                 }
 	    	}
 	    }
+	}
+	
+	public void CheckAnnoy()
+	{
+		if(canPlay)
+		{
+			annoyParticles.GetComponent<ParticleSystem>().Play();
+			StartCoroutine("AnnoyCooldown");
+		}
+	}
+	IEnumerator AnnoyCooldown()
+	{
+		canPlay = false;
+		yield return new WaitForSeconds(0.3f);
+		canPlay = true;
 	}
 
     bool CheckBounds()
