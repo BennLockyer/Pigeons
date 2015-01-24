@@ -80,7 +80,7 @@ public class PlayerBehaviour : MonoBehaviour
 //        rigidbody.MovePosition(rigidbody.position + m_v3MoveDirection * m_fMoveSpeed * Time.fixedDeltaTime);
 //    }
 
-    bool IsPlayerOutOfTopBound()
+    public bool IsPlayerOutOfTopBound()
     {
         Vector3 topPlayerBound = Camera.main.WorldToScreenPoint(transform.position + Vector3.forward * 1.0f);
         if (topPlayerBound.y >= m_pCameraBehaviour.TopCameraBound)
@@ -88,7 +88,7 @@ public class PlayerBehaviour : MonoBehaviour
         return false;
     }
 
-    bool IsPlayerOutOfBottomBound()
+    public bool IsPlayerOutOfBottomBound()
     {
         Vector3 bottomPlayerBound = Camera.main.WorldToScreenPoint(transform.position + Vector3.back * 1.0f);
         if (bottomPlayerBound.y <= m_pCameraBehaviour.BottomCameraBound)
@@ -96,7 +96,7 @@ public class PlayerBehaviour : MonoBehaviour
         return false;
     }
 
-    bool IsPlayerOutOfRightBound()
+    public bool IsPlayerOutOfRightBound()
     {
         Vector3 rightPlayerBound = Camera.main.WorldToScreenPoint(transform.position + Vector3.right * 1.0f);
         if (rightPlayerBound.x >= m_pCameraBehaviour.RightCameraBound)
@@ -104,7 +104,7 @@ public class PlayerBehaviour : MonoBehaviour
         return false;
     }
 
-    bool IsPlayerOutOfLeftBound()
+    public bool IsPlayerOutOfLeftBound()
     {
         Vector3 leftPlayerBound = Camera.main.WorldToScreenPoint(transform.position + Vector3.left * 1.0f);
         if (leftPlayerBound.x <= m_pCameraBehaviour.LeftCameraBound)
