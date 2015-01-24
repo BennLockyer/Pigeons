@@ -120,13 +120,13 @@ public class CameraBehaviour : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player1");
         if (player != null)
         {
-            Gizmos.DrawWireSphere(player.transform.position, 1.0f);
+            //Gizmos.DrawWireSphere(player.transform.position, 1.0f);
         }
 
         GameObject player2 = GameObject.FindGameObjectWithTag("Player2");
         if (player2 != null)
         {
-            Gizmos.DrawWireSphere(player2.transform.position, 1.0f);
+            //Gizmos.DrawWireSphere(player2.transform.position, 1.0f);
         }
     }
 }
