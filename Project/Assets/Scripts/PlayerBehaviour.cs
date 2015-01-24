@@ -6,7 +6,6 @@ public class PlayerBehaviour : MonoBehaviour
     private CameraBehaviour m_pCameraBehaviour;
     [SerializeField]
     private float m_fMoveSpeed;
-    private Vector3 m_v3MoveDirection;
 	
 	private string hMovement;
 	private string vMovement;
@@ -41,47 +40,38 @@ public class PlayerBehaviour : MonoBehaviour
     	{
     		//transform.LookAt(temp);
     		Vector3 targetDir = temp - transform.position;
-    		Vector3 newDir = Vector3.RotateTowards(transform.forward,targetDir,8 * Time.deltaTime,0.0f);
+    		Vector3 newDir = Vector3.RotateTowards(transform.forward,targetDir,10 * Time.deltaTime,0.0f);
     		transform.rotation = Quaternion.LookRotation(newDir);
 			float angle = Vector3.Angle(transform.forward,temp-transform.position);
 			
- 			if(angle < 5.0f)
+ 			if(angle < 45.0f)
  			{
 		    	RaycastHit hit1;
 		    	if(!Physics.Raycast(transform.position,transform.forward,out hit1,1.0f))
 		    	{
-		    		transform.Translate(Vector3.forward * m_fMoveSpeed * Time.deltaTime);
+                    if (CheckBounds() == false)
+                    {
+                        transform.Translate(Vector3.forward * m_fMoveSpeed * Time.deltaTime);
+                    }
 		    	}
 	    	}
 	    }
-//        m_v3MoveDirection = Vector3.zero;
-	    // Key Input -- Change Later
-//        if (Input.GetKey(KeyCode.W) == true && IsPlayerOutOfTopBound() == false)
-//        {
-//            m_v3MoveDirection += Vector3.forward;
-//        }
-//
-//        if (Input.GetKey(KeyCode.S) == true && IsPlayerOutOfBottomBound() == false)
-//        {
-//            m_v3MoveDirection += Vector3.back;
-//        }
-//
-//        if (Input.GetKey(KeyCode.A) == true && IsPlayerOutOfLeftBound() == false)
-//        {
-//            m_v3MoveDirection += Vector3.left;
-//        }
-//
-//        if (Input.GetKey(KeyCode.D) == true && IsPlayerOutOfRightBound() == false)
-//        {
-//            m_v3MoveDirection += Vector3.right;
-//        }
 	}
 
-//    void FixedUpdate()
-//    {
-//        m_v3MoveDirection.Normalize();
-//        rigidbody.MovePosition(rigidbody.position + m_v3MoveDirection * m_fMoveSpeed * Time.fixedDeltaTime);
-//    }
+    bool CheckBounds()
+    {
+        Vector3 direction = transform.forward;
+        direction.Normalize();
+        if(IsPlayerOutOfTopBound() && direction.z > 0)
+            return true;
+        if (IsPlayerOutOfBottomBound() && direction.z < 0)
+            return true;
+        if (IsPlayerOutOfRightBound() && direction.x > 0)
+            return true;
+        if (IsPlayerOutOfLeftBound() && direction.x < 0)
+            return true;
+        return false;
+    }
 
     public bool IsPlayerOutOfTopBound()
     {

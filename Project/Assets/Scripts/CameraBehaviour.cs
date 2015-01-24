@@ -37,56 +37,53 @@ public class CameraBehaviour : MonoBehaviour
         get { return Screen.width / 2 + m_fRBound; }
     }
 
-    [SerializeField]
-    private int m_iGridSize;
+    private PlayerBehaviour m_player1Behaviour;
+    private PlayerBehaviour m_player2Behaviour;
+    private GameObject m_player1Object;
+    private GameObject m_player2Object;
 
 	void Start () 
-    { 
-	
+    {
+        // Get Player
+        m_player1Object = GameObject.FindGameObjectWithTag("Player1");
+        m_player2Object = GameObject.FindGameObjectWithTag("Player2");
+        m_player1Behaviour = m_player1Object.GetComponent<PlayerBehaviour>();
+        m_player2Behaviour = m_player2Object.GetComponent<PlayerBehaviour>();
 	}
 
 	void Update () 
     {
         m_v3CameraVelocity = Vector3.zero;
 
-        // Get Player
-        GameObject player1 = GameObject.FindGameObjectWithTag("Player1");
-        GameObject player2 = GameObject.FindGameObjectWithTag("Player2");
-        HandleCameraBounds(player1);
-        HandleCameraBounds(player2);
+        HandleCameraBounds(m_player1Behaviour, m_player2Behaviour);
+        HandleCameraBounds(m_player2Behaviour, m_player1Behaviour);
+
+        transform.position = transform.position + m_v3CameraVelocity * m_fCameraSpeed * Time.deltaTime;
 	}
 
-    void FixedUpdate()
+    void HandleCameraBounds(PlayerBehaviour a_player1, PlayerBehaviour a_player2)
     {
-        Debug.Log(m_v3CameraVelocity.ToString());
-        m_v3CameraVelocity.Normalize();
-        transform.position = transform.position + m_v3CameraVelocity * m_fCameraSpeed * Time.fixedDeltaTime;
-    }
-
-    void HandleCameraBounds(GameObject player)
-    {
-        if (player != null)
+        if (a_player1 != null && a_player2 != null)
         {
-            Vector3 topPlayerBound =    camera.WorldToScreenPoint(player.transform.position + Vector3.forward * 1.0f);
-            Vector3 bottomPlayerBound = camera.WorldToScreenPoint(player.transform.position + Vector3.back * 1.0f);
-            Vector3 rightPlayerBound =  camera.WorldToScreenPoint(player.transform.position + Vector3.right * 1.0f);
-            Vector3 leftPlayerBound =   camera.WorldToScreenPoint(player.transform.position + Vector3.left * 1.0f);
-
-            if (topPlayerBound.y > TopCameraBound)
+            if (a_player1.IsPlayerOutOfTopBound() && !a_player2.IsPlayerOutOfBottomBound())
             {
-                m_v3CameraVelocity += Vector3.forward;
+                if (a_player1.transform.forward.z > 0.0f)
+                    m_v3CameraVelocity.z += a_player1.transform.forward.z;
             }
-            if (bottomPlayerBound.y < BottomCameraBound)
+            if (a_player1.IsPlayerOutOfBottomBound() && !a_player2.IsPlayerOutOfTopBound())
             {
-                m_v3CameraVelocity += Vector3.back;
+                if(a_player1.transform.forward.z < 0.0f)
+                    m_v3CameraVelocity.z += a_player1.transform.forward.z;
             }
-            if (rightPlayerBound.x > RightCameraBound)
+            if (a_player1.IsPlayerOutOfRightBound() && !a_player2.IsPlayerOutOfLeftBound())
             {
-                m_v3CameraVelocity += Vector3.right;
+                if (a_player1.transform.forward.x > 0.0f)
+                    m_v3CameraVelocity.x += a_player1.transform.forward.x;
             }
-            if (leftPlayerBound.x < LeftCameraBound)
+            if (a_player1.IsPlayerOutOfLeftBound() && !a_player2.IsPlayerOutOfRightBound())
             {
-                m_v3CameraVelocity += Vector3.left;
+                if (a_player1.transform.forward.x < 0.0f)
+                    m_v3CameraVelocity.x += a_player1.transform.forward.x;
             }
         }
     }
