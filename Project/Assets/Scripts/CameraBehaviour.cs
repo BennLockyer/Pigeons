@@ -16,27 +16,27 @@ public class CameraBehaviour : MonoBehaviour
     [SerializeField]
     private float m_fCameraSpeed = 1.0f;
 
-    private Vector3 m_v3ScreenTargetPos;
+    private Vector3 m_v3TargetPos;
 
     // In screen space
     public float TopCameraBound
     {
-        get { return Screen.height / 2 + m_fTBound; }
+        get { return transform.position.z + m_fTBound; }
     }
     // In screen space
     public float BottomCameraBound
     {
-        get { return Screen.height / 2 - m_fBBound; }
+        get { return transform.position.z - m_fBBound; }
     }
     // In screen space
     public float LeftCameraBound
     {
-        get { return Screen.width / 2 - m_fLBound; }
+        get { return transform.position.x - m_fLBound; }
     }
     // In screen space
     public float RightCameraBound
     {
-        get { return Screen.width / 2 + m_fRBound; }
+        get { return transform.position.x + m_fRBound; }
     }
 
     private PlayerBehaviour m_player1Behaviour;
@@ -59,17 +59,12 @@ public class CameraBehaviour : MonoBehaviour
 
         HandleCameraBounds(m_player1Behaviour, m_player2Behaviour);
         HandleCameraBounds(m_player2Behaviour, m_player1Behaviour);
-
-        ///transform.position = transform.position + m_v3CameraVelocity * m_fCameraSpeed * Time.deltaTime;
-        ///
         Vector3 pos = transform.position;
-        Vector3 ScreenPos = camera.WorldToScreenPoint(pos);
-        
-        ScreenPos = camera.ScreenToWorldPoint(ScreenPos + m_v3ScreenTargetPos);
-        m_v3ScreenTargetPos = Vector3.zero;
-
-        pos.z = Mathf.Lerp(pos.z, ScreenPos.z, Time.deltaTime * 10.0f);
-        transform.position = pos;
+        Vector3 newPos = pos + m_v3TargetPos;
+        Vector3 dir = newPos - pos;
+        dir.Normalize();
+        m_v3TargetPos = Vector3.zero;
+        transform.position = Vector3.Lerp(transform.position, newPos + dir * 0.05f, Time.deltaTime * m_fCameraSpeed);
 	}
 
     void HandleCameraBounds(PlayerBehaviour a_player1, PlayerBehaviour a_player2)
@@ -78,28 +73,19 @@ public class CameraBehaviour : MonoBehaviour
         {
             if (a_player1.IsPlayerOutOfTopBound() && !a_player2.IsPlayerOutOfBottomBound())
             {
-                //if (a_player1.transform.forward.z > 0.0f)
-                //    m_v3CameraVelocity.z += a_player1.transform.forward.z;
-                Vector3 screenPos = camera.WorldToScreenPoint(a_player1.transform.position);
-                float TopDist = screenPos.y - TopCameraBound;
-               // Debug.Log(TopDist.ToString());
-                m_v3ScreenTargetPos.y = TopDist;
-                m_v3ScreenTargetPos.z = 1.0f;
+                m_v3TargetPos.z = (a_player1.transform.position.z + 1.0f)- TopCameraBound;
             }
             if (a_player1.IsPlayerOutOfBottomBound() && !a_player2.IsPlayerOutOfTopBound())
             {
-                if(a_player1.transform.forward.z < 0.0f)
-                    m_v3CameraVelocity.z += a_player1.transform.forward.z;
+                m_v3TargetPos.z = (a_player1.transform.position.z - 1.0f) - BottomCameraBound;
             }
             if (a_player1.IsPlayerOutOfRightBound() && !a_player2.IsPlayerOutOfLeftBound())
             {
-                if (a_player1.transform.forward.x > 0.0f)
-                    m_v3CameraVelocity.x += a_player1.transform.forward.x;
+                m_v3TargetPos.x = (a_player1.transform.position.x + 1.0f) - RightCameraBound;
             }
             if (a_player1.IsPlayerOutOfLeftBound() && !a_player2.IsPlayerOutOfRightBound())
             {
-                if (a_player1.transform.forward.x < 0.0f)
-                    m_v3CameraVelocity.x += a_player1.transform.forward.x;
+                m_v3TargetPos.x = (a_player1.transform.position.x - 1.0f) - LeftCameraBound;
             }
         }
     }
@@ -108,27 +94,22 @@ public class CameraBehaviour : MonoBehaviour
     {
         // Camera Bounds
         Gizmos.color = Color.red;
-        Vector3 tl = Vector3.one;
-        Vector3 tr = Vector3.one;
-        Vector3 bl = Vector3.one;
-        Vector3 br = Vector3.one;
+        Vector3 tl = Vector3.zero;
+        Vector3 tr = Vector3.zero;
+        Vector3 bl = Vector3.zero;
+        Vector3 br = Vector3.zero;
 
         tl.x = LeftCameraBound;
-        tl.y = TopCameraBound;
+        tl.z = TopCameraBound;
 
         tr.x = RightCameraBound;
-        tr.y = TopCameraBound;
+        tr.z = TopCameraBound;
 
         bl.x = LeftCameraBound;
-        bl.y = BottomCameraBound;
+        bl.z = BottomCameraBound;
 
         br.x = RightCameraBound;    
-        br.y = BottomCameraBound;
-
-        tl = camera.ScreenToWorldPoint(tl);
-        tr = camera.ScreenToWorldPoint(tr);
-        bl = camera.ScreenToWorldPoint(bl);
-        br = camera.ScreenToWorldPoint(br);   
+        br.z = BottomCameraBound;
 
         Gizmos.DrawLine(tl, tr);
         Gizmos.DrawLine(bl, br);
@@ -139,29 +120,13 @@ public class CameraBehaviour : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player1");
         if (player != null)
         {
-            Vector3 playerScreenPos = camera.WorldToScreenPoint(player.transform.position);
-
-            
-            
-            Vector3 BoundPos = playerScreenPos;
-            BoundPos.y = TopCameraBound;
-
-            targetPos = new Vector3(Screen.width / 2, Screen.height / 2 + (playerScreenPos.y - TopCameraBound), 1.0f);
-            targetPos = camera.ScreenToWorldPoint(targetPos);
-            Gizmos.DrawLine(camera.ScreenToWorldPoint(BoundPos), camera.ScreenToWorldPoint(playerScreenPos));
+            Gizmos.DrawWireSphere(player.transform.position, 1.0f);
         }
 
         GameObject player2 = GameObject.FindGameObjectWithTag("Player2");
         if (player2 != null)
         {
-            Vector3 playerScreenPos = camera.WorldToScreenPoint(player2.transform.position);
-            Gizmos.DrawWireSphere(camera.ScreenToWorldPoint(playerScreenPos), 1.0f);
+            Gizmos.DrawWireSphere(player2.transform.position, 1.0f);
         }
-
-        Vector3 centreScreen = new Vector3(Screen.width / 2, Screen.height / 2, 1.0f);
-        centreScreen = camera.ScreenToWorldPoint(centreScreen);
-
-        Gizmos.DrawLine(centreScreen, targetPos);
-        Gizmos.DrawLine(centreScreen, transform.position);
     }
 }

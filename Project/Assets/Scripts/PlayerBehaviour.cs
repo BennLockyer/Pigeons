@@ -45,11 +45,11 @@ public class PlayerBehaviour : MonoBehaviour
 			float angle = Vector3.Angle(transform.forward,temp-transform.position);
 			
  			if(angle < 45.0f)
- 			{
+ 			{   
 		    	RaycastHit hit1;
 		    	if(!Physics.Raycast(transform.position,transform.forward,out hit1,1.0f))
 		    	{
-                    //if (CheckBounds() == false)
+                    if (CheckBounds() == false)
                     {
                         transform.Translate(Vector3.forward * m_fMoveSpeed * Time.deltaTime);
                     }
@@ -75,23 +75,23 @@ public class PlayerBehaviour : MonoBehaviour
 
     public bool IsPlayerOutOfTopBound()
     {
-        Vector3 topPlayerBound = Camera.main.WorldToScreenPoint(transform.position + Vector3.forward * 1.0f);
-        if (topPlayerBound.y >= m_pCameraBehaviour.TopCameraBound)
+        Vector3 topPlayerBound = transform.position + Vector3.forward * 1.0f;
+        if (topPlayerBound.z >= m_pCameraBehaviour.TopCameraBound)
             return true;
         return false;
     }
 
     public bool IsPlayerOutOfBottomBound()
     {
-        Vector3 bottomPlayerBound = Camera.main.WorldToScreenPoint(transform.position + Vector3.back * 1.0f);
-        if (bottomPlayerBound.y <= m_pCameraBehaviour.BottomCameraBound)
+        Vector3 bottomPlayerBound = transform.position + Vector3.back * 1.0f;
+        if (bottomPlayerBound.z <= m_pCameraBehaviour.BottomCameraBound)
             return true;
         return false;
     }
 
     public bool IsPlayerOutOfRightBound()
     {
-        Vector3 rightPlayerBound = Camera.main.WorldToScreenPoint(transform.position + Vector3.right * 1.0f);
+        Vector3 rightPlayerBound = transform.position + Vector3.right * 1.0f;
         if (rightPlayerBound.x >= m_pCameraBehaviour.RightCameraBound)
             return true;
         return false;
@@ -99,7 +99,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public bool IsPlayerOutOfLeftBound()
     {
-        Vector3 leftPlayerBound = Camera.main.WorldToScreenPoint(transform.position + Vector3.left * 1.0f);
+        Vector3 leftPlayerBound = transform.position + Vector3.left * 1.0f;
         if (leftPlayerBound.x <= m_pCameraBehaviour.LeftCameraBound)
             return true;
         return false;
