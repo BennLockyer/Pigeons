@@ -7,7 +7,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField]
     private float m_fMoveSpeed;
     private Vector3 m_v3MoveDirection;
-
+	
     void Awake()
     {
     }
@@ -19,34 +19,47 @@ public class PlayerBehaviour : MonoBehaviour
 
 	void Update () 
     {
-        m_v3MoveDirection = Vector3.zero;
+    	//maybe use 'getaxis' to cater for more than 8-way direction
+    	Vector3 temp = new Vector3(transform.position.x + (2 * Input.GetAxisRaw("Horizontal1")),transform.position.y,transform.position.z + (2*Input.GetAxisRaw("Vertical")));
+    	float distance = Vector3.Distance(transform.position,temp);
+    	if(distance > 0.5f)
+    	{
+    		transform.LookAt(temp);
+ 
+	    	RaycastHit hit1;
+	    	if(!Physics.Raycast(transform.position,transform.forward,out hit1,1.0f))
+	    	{
+	    		transform.Translate(Vector3.forward * m_fMoveSpeed * Time.deltaTime);
+	    	}
+	    }
+//        m_v3MoveDirection = Vector3.zero;
 	    // Key Input -- Change Later
-        if (Input.GetKey(KeyCode.W) == true && IsPlayerOutOfTopBound() == false)
-        {
-            m_v3MoveDirection += Vector3.forward;
-        }
-
-        if (Input.GetKey(KeyCode.S) == true && IsPlayerOutOfBottomBound() == false)
-        {
-            m_v3MoveDirection += Vector3.back;
-        }
-
-        if (Input.GetKey(KeyCode.A) == true && IsPlayerOutOfLeftBound() == false)
-        {
-            m_v3MoveDirection += Vector3.left;
-        }
-
-        if (Input.GetKey(KeyCode.D) == true && IsPlayerOutOfRightBound() == false)
-        {
-            m_v3MoveDirection += Vector3.right;
-        }
+//        if (Input.GetKey(KeyCode.W) == true && IsPlayerOutOfTopBound() == false)
+//        {
+//            m_v3MoveDirection += Vector3.forward;
+//        }
+//
+//        if (Input.GetKey(KeyCode.S) == true && IsPlayerOutOfBottomBound() == false)
+//        {
+//            m_v3MoveDirection += Vector3.back;
+//        }
+//
+//        if (Input.GetKey(KeyCode.A) == true && IsPlayerOutOfLeftBound() == false)
+//        {
+//            m_v3MoveDirection += Vector3.left;
+//        }
+//
+//        if (Input.GetKey(KeyCode.D) == true && IsPlayerOutOfRightBound() == false)
+//        {
+//            m_v3MoveDirection += Vector3.right;
+//        }
 	}
 
-    void FixedUpdate()
-    {
-        m_v3MoveDirection.Normalize();
-        rigidbody.MovePosition(rigidbody.position + m_v3MoveDirection * m_fMoveSpeed * Time.fixedDeltaTime);
-    }
+//    void FixedUpdate()
+//    {
+//        m_v3MoveDirection.Normalize();
+//        rigidbody.MovePosition(rigidbody.position + m_v3MoveDirection * m_fMoveSpeed * Time.fixedDeltaTime);
+//    }
 
     bool IsPlayerOutOfTopBound()
     {
