@@ -73,9 +73,10 @@ public class TriggerController : MonoBehaviour
 				for(int x = 0; x < targetObjects.Length; ++x)
 				{
 					targetObjects[x].GetComponent<DropObject>().Toggle();
-					audioManager.PlaySound(8);
-					audioManager.PlaySound(9);
+					
 				}
+				audioManager.PlaySound(8);
+				audioManager.PlaySound(9);
 				if(triggerType == TriggerType.Button)
 					canUse = false;
 			}
