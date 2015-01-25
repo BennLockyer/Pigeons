@@ -206,6 +206,11 @@ public class LevelEditor : EditorWindow
 		GUILayout.BeginHorizontal();
 		GUI.color = Color.yellow;
 		GUILayout.Label(warningText,GUILayout.Width(400));
+		
+//		if(GUILayout.Button("LETS DO THIS"))
+//		{
+//			LetsHopeThisWorks();
+//		}
 	}
 	
 	void GenerateMap()
@@ -287,6 +292,20 @@ public class LevelEditor : EditorWindow
 //					t.renderer.material = materials[index[x,y]];
 				}
 			}
+		}
+	}
+	
+	void LetsHopeThisWorks()
+	{
+		GameObject[] myTiles = GameObject.FindGameObjectsWithTag("Tile");
+		foreach(GameObject t in myTiles)
+		{
+			string name = t.name.Remove(t.name.Length - 7);
+			GameObject p = Resources.Load<GameObject>("Tiles/" + name);
+			GameObject i = (GameObject)Instantiate (p, t.transform.position,Quaternion.identity);
+			i.transform.eulerAngles = t.transform.eulerAngles;
+			i.transform.parent = t.transform;
+			t.renderer.enabled = false;
 		}
 	}
 	

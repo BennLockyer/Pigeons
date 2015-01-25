@@ -18,16 +18,16 @@ public class DropObject : MonoBehaviour
 	
 	void Start()
 	{
-		if(transform.position.y == 0)
+		if(transform.position.y > 0)
 		{
 			closedPos = transform.position;
-			openPos = new Vector3(transform.position.x, transform.position.y + 2.0f, transform.position.z);
+			openPos = new Vector3(transform.position.x, transform.position.y - 6.0f, transform.position.z);
 			lastPos = closedPos;
 		}
 		else
 		{
 			openPos = transform.position;
-			closedPos = new Vector3(transform.position.x, transform.position.y - 2.0f, transform.position.z);
+			closedPos = new Vector3(transform.position.x, transform.position.y + 6.0f, transform.position.z);
 			lastPos = openPos;
 		}
 	}
