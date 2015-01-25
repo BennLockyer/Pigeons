@@ -31,7 +31,13 @@ public class LevelController : MonoBehaviour
 			{
 				//You have beaten the level!
 				Debug.Log ("Level complete");
-				Application.LoadLevel(0);
+				Kebab ();
 			}
+	}
+	
+	IEnumerator Kebab()
+	{
+		yield return new WaitForSeconds(1.0f);
+		Application.LoadLevel(0);
 	}
 }
