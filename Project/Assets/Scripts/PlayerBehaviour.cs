@@ -3,6 +3,13 @@ using System.Collections;
 
 public class PlayerBehaviour : MonoBehaviour 
 {
+    enum CharacterAnimationState
+    {
+        IDLE_STATE = 0,
+        RUN_STATE
+    };
+    private CharacterAnimationState m_charAnimState;
+
     private CameraBehaviour m_pCameraBehaviour;
     [SerializeField]
     private float m_fMoveSpeed;
@@ -12,24 +19,21 @@ public class PlayerBehaviour : MonoBehaviour
 	private string hMovement; 
 	private string vMovement;
 
-    private string playerStatus;
-    
     public GameObject annoyParticles;
     private bool canPlay = true;
-	
-    void Awake()
-    {
-        playerStatus = string.Empty;
-    }
 
-    void OnGUI()
-    {
-        GUI.Label(new Rect(10, 10, 1000, 1000), playerStatus);
-    }
+    private Animator m_charAnimator;
 
 	void Start () 
     {
         m_pCameraBehaviour = Camera.main.GetComponent<CameraBehaviour>();
+        
+        m_charAnimator = gameObject.GetComponentInChildren<Animator>();
+        if(m_charAnimator == null)
+        {
+            Debug.Log("Animator NOT FOUND");
+        }
+
         if(gameObject.tag == "Player1")
         {
         	hMovement = "Horizontal1";
@@ -44,6 +48,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 	void Update () 
     {
+        m_charAnimState = CharacterAnimationState.IDLE_STATE;
     	if((gameObject.tag == "Player1" && Input.GetButtonDown("Fire1")) || (gameObject.tag == "Player2" && Input.GetButtonDown("Fire2")))
     	{
 			if(gameObject.tag == "Player1")
@@ -61,7 +66,6 @@ public class PlayerBehaviour : MonoBehaviour
     	Vector3 temp = new Vector3(transform.position.x + (2 * Input.GetAxisRaw(hMovement)),transform.position.y,transform.position.z + (2*Input.GetAxisRaw(vMovement)));
     	float distance = Vector3.Distance(transform.position,temp);
     	
-    	
     	if(distance > 1.0f)
     	{
     		//transform.LookAt(temp);
@@ -69,18 +73,19 @@ public class PlayerBehaviour : MonoBehaviour
     		Vector3 newDir = Vector3.RotateTowards(transform.forward,targetDir,10 * Time.deltaTime,0.0f);
     		transform.rotation = Quaternion.LookRotation(newDir);
 			float angle = Vector3.Angle(transform.forward,temp-transform.position);
-			
+            m_charAnimState = CharacterAnimationState.RUN_STATE;
+
  			if(angle < 45.0f)
  			{
+
                 Vector3 playerVelocity = Vector3.zero;
 
                 RaycastHit hit1;
                 // Side raycast
-                bool isRightHit = false;
+                  bool isRightHit = false;
                 bool isLeftHit = false;
                 if (Physics.Raycast(transform.position, transform.right, out hit1, 1.0f))
                 {
-                    Debug.Log("right Hit");
                     isRightHit = true;
                     float dist = 0.5f - hit1.distance;
                     playerVelocity += hit1.normal * dist;
@@ -126,7 +131,9 @@ public class PlayerBehaviour : MonoBehaviour
                     transform.Translate(playerVelocity * m_fMoveSpeed * Time.deltaTime, Space.World);
                 }
 	    	}
+            
 	    }
+        m_charAnimator.SetInteger("CharacterState", (int)m_charAnimState);
 	}
 	
 	public void CheckAnnoy()
@@ -189,16 +196,5 @@ public class PlayerBehaviour : MonoBehaviour
         if (leftPlayerBound.x <= m_pCameraBehaviour.LeftCameraBound)
             return true;
         return false;
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Vector3 destPos = transform.position + transform.forward * 0.5f;
-        Gizmos.DrawLine(transform.position, destPos);
-        Vector3 leftPos = transform.position - transform.right * 0.5f;
-        Gizmos.DrawLine(transform.position, leftPos);
-        Vector3 rightpos = transform.position + transform.right * 0.5f;
-        Gizmos.DrawLine(transform.position, rightpos);
     }
 }

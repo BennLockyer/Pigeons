@@ -1,0 +1,700 @@
+fileFormatVersion: 2
+guid: 41fda24e74617a94489414c2a0a5536e
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Antenna
+    100002: Antenna1
+    100004: Ball
+    100006: Ball1
+    100008: Body
+    100010: Bottom_Spine
+    100012: //RootNode
+    100014: Head
+    100016: Head 1
+    100018: Jaw
+    100020: Jaw 1
+    100022: Jaw_Top
+    100024: L_Ankle
+    100026: L_Antenna
+    100028: L_Antenna1
+    100030: L_Arm
+    100032: L_Arm1
+    100034: L_Clavicle
+    100036: L_Elbow
+    100038: L_First_1
+    100040: L_First_top
+    100042: L_Hand
+    100044: L_Hip
+    100046: L_Knee
+    100048: L_Last_1
+    100050: L_Last_top
+    100052: L_Leg
+    100054: L_Leg1
+    100056: L_Middle_1
+    100058: L_Middle_top
+    100060: L_Screw
+    100062: L_Screw1
+    100064: L_Shoe
+    100066: L_Shoe1
+    100068: L_Shoulder
+    100070: L_TOe
+    100072: L_Wrist
+    100074: Neck
+    100076: Neck 1
+    100078: Player
+    100080: polySurface1
+    100082: R_Ankle
+    100084: R_Clavicle
+    100086: R_Elbow
+    100088: R_Eye
+    100090: R_Eye1
+    100092: R_First_1
+    100094: R_First_Top
+    100096: R_Hand
+    100098: R_Hip
+    100100: R_Knee
+    100102: R_Last_1
+    100104: R_Last_Top
+    100106: R_Middle_1
+    100108: R_Middle_Top
+    100110: R_Shoulder
+    100112: R_Toe
+    100114: R_Wrist
+    100116: Root
+    100118: Tip_Head
+    100120: Top_Head
+    100122: Top_Spine
+    100124: transform1
+    100126: transform2
+    100128: Waist
+    400000: Antenna
+    400002: Antenna1
+    400004: Ball
+    400006: Ball1
+    400008: Body
+    400010: Bottom_Spine
+    400012: //RootNode
+    400014: Head
+    400016: Head 1
+    400018: Jaw
+    400020: Jaw 1
+    400022: Jaw_Top
+    400024: L_Ankle
+    400026: L_Antenna
+    400028: L_Antenna1
+    400030: L_Arm
+    400032: L_Arm1
+    400034: L_Clavicle
+    400036: L_Elbow
+    400038: L_First_1
+    400040: L_First_top
+    400042: L_Hand
+    400044: L_Hip
+    400046: L_Knee
+    400048: L_Last_1
+    400050: L_Last_top
+    400052: L_Leg
+    400054: L_Leg1
+    400056: L_Middle_1
+    400058: L_Middle_top
+    400060: L_Screw
+    400062: L_Screw1
+    400064: L_Shoe
+    400066: L_Shoe1
+    400068: L_Shoulder
+    400070: L_TOe
+    400072: L_Wrist
+    400074: Neck
+    400076: Neck 1
+    400078: Player
+    400080: polySurface1
+    400082: R_Ankle
+    400084: R_Clavicle
+    400086: R_Elbow
+    400088: R_Eye
+    400090: R_Eye1
+    400092: R_First_1
+    400094: R_First_Top
+    400096: R_Hand
+    400098: R_Hip
+    400100: R_Knee
+    400102: R_Last_1
+    400104: R_Last_Top
+    400106: R_Middle_1
+    400108: R_Middle_Top
+    400110: R_Shoulder
+    400112: R_Toe
+    400114: R_Wrist
+    400116: Root
+    400118: Tip_Head
+    400120: Top_Head
+    400122: Top_Spine
+    400124: transform1
+    400126: transform2
+    400128: Waist
+    4300000: Head
+    4300002: Neck
+    4300004: Jaw
+    4300006: R_Eye
+    4300008: L_Leg
+    4300010: Body
+    4300012: L_Screw
+    4300014: L_Arm
+    4300016: L_Shoe
+    4300018: L_Antenna
+    4300020: R_Eye1
+    4300022: L_Antenna1
+    4300024: Antenna1
+    4300026: Ball1
+    4300028: L_Arm1
+    4300030: L_Leg1
+    4300032: L_Shoe1
+    4300034: L_Screw1
+    4300036: polySurface1
+    7400000: Run
+    7400002: Start
+    7400004: Idle
+    7400006: Teleport
+    9500000: //RootNode
+    13700000: Antenna1
+    13700002: Ball1
+    13700004: Body
+    13700006: Head
+    13700008: Jaw
+    13700010: L_Antenna
+    13700012: L_Antenna1
+    13700014: L_Arm
+    13700016: L_Arm1
+    13700018: L_Leg
+    13700020: L_Leg1
+    13700022: L_Screw
+    13700024: L_Screw1
+    13700026: L_Shoe
+    13700028: L_Shoe1
+    13700030: Neck
+    13700032: polySurface1
+    13700034: R_Eye
+    13700036: R_Eye1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Run
+      takeName: Take 001
+      firstFrame: 65
+      lastFrame: 85
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Player
+        weight: 1
+      - path: Player/Antenna
+        weight: 1
+      - path: Player/Antenna/transform2
+        weight: 1
+      - path: Player/Antenna1
+        weight: 1
+      - path: Player/Ball
+        weight: 1
+      - path: Player/Ball/transform1
+        weight: 1
+      - path: Player/Ball1
+        weight: 1
+      - path: Player/Body
+        weight: 1
+      - path: Player/Head
+        weight: 1
+      - path: Player/Jaw
+        weight: 1
+      - path: Player/L_Antenna
+        weight: 1
+      - path: Player/L_Antenna1
+        weight: 1
+      - path: Player/L_Arm
+        weight: 1
+      - path: Player/L_Arm1
+        weight: 1
+      - path: Player/L_Leg
+        weight: 1
+      - path: Player/L_Leg1
+        weight: 1
+      - path: Player/L_Screw
+        weight: 1
+      - path: Player/L_Screw1
+        weight: 1
+      - path: Player/L_Shoe
+        weight: 1
+      - path: Player/L_Shoe1
+        weight: 1
+      - path: Player/Neck
+        weight: 1
+      - path: Player/polySurface1
+        weight: 1
+      - path: Player/R_Eye
+        weight: 1
+      - path: Player/R_Eye1
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Waist
+        weight: 1
+      - path: Root/Waist/Bottom_Spine
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand/L_First_1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand/L_First_1/L_First_top
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand/L_Last_1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand/L_Last_1/L_Last_top
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand/L_Middle_1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand/L_Middle_1/L_Middle_top
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/Neck 1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/Neck 1/Head 1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/Neck 1/Head 1/Jaw 1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/Neck 1/Head 1/Jaw 1/Jaw_Top
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/Neck 1/Head 1/Top_Head
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/Neck 1/Head 1/Top_Head/Tip_Head
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand/R_First_1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand/R_First_1/R_First_Top
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand/R_Last_1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand/R_Last_1/R_Last_Top
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand/R_Middle_1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand/R_Middle_1/R_Middle_Top
+        weight: 1
+      - path: Root/Waist/L_Hip
+        weight: 1
+      - path: Root/Waist/L_Hip/L_Knee
+        weight: 1
+      - path: Root/Waist/L_Hip/L_Knee/L_Ankle
+        weight: 1
+      - path: Root/Waist/L_Hip/L_Knee/L_Ankle/L_TOe
+        weight: 1
+      - path: Root/Waist/R_Hip
+        weight: 1
+      - path: Root/Waist/R_Hip/R_Knee
+        weight: 1
+      - path: Root/Waist/R_Hip/R_Knee/R_Ankle
+        weight: 1
+      - path: Root/Waist/R_Hip/R_Knee/R_Ankle/R_Toe
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Start
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Player
+        weight: 1
+      - path: Player/Antenna
+        weight: 1
+      - path: Player/Antenna/transform2
+        weight: 1
+      - path: Player/Antenna1
+        weight: 1
+      - path: Player/Ball
+        weight: 1
+      - path: Player/Ball/transform1
+        weight: 1
+      - path: Player/Ball1
+        weight: 1
+      - path: Player/Body
+        weight: 1
+      - path: Player/Head
+        weight: 1
+      - path: Player/Jaw
+        weight: 1
+      - path: Player/L_Antenna
+        weight: 1
+      - path: Player/L_Antenna1
+        weight: 1
+      - path: Player/L_Arm
+        weight: 1
+      - path: Player/L_Arm1
+        weight: 1
+      - path: Player/L_Leg
+        weight: 1
+      - path: Player/L_Leg1
+        weight: 1
+      - path: Player/L_Screw
+        weight: 1
+      - path: Player/L_Screw1
+        weight: 1
+      - path: Player/L_Shoe
+        weight: 1
+      - path: Player/L_Shoe1
+        weight: 1
+      - path: Player/Neck
+        weight: 1
+      - path: Player/polySurface1
+        weight: 1
+      - path: Player/R_Eye
+        weight: 1
+      - path: Player/R_Eye1
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Waist
+        weight: 1
+      - path: Root/Waist/Bottom_Spine
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand/L_First_1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand/L_First_1/L_First_top
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand/L_Last_1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand/L_Last_1/L_Last_top
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand/L_Middle_1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand/L_Middle_1/L_Middle_top
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/Neck 1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/Neck 1/Head 1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/Neck 1/Head 1/Jaw 1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/Neck 1/Head 1/Jaw 1/Jaw_Top
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/Neck 1/Head 1/Top_Head
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/Neck 1/Head 1/Top_Head/Tip_Head
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand/R_First_1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand/R_First_1/R_First_Top
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand/R_Last_1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand/R_Last_1/R_Last_Top
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand/R_Middle_1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand/R_Middle_1/R_Middle_Top
+        weight: 1
+      - path: Root/Waist/L_Hip
+        weight: 1
+      - path: Root/Waist/L_Hip/L_Knee
+        weight: 1
+      - path: Root/Waist/L_Hip/L_Knee/L_Ankle
+        weight: 1
+      - path: Root/Waist/L_Hip/L_Knee/L_Ankle/L_TOe
+        weight: 1
+      - path: Root/Waist/R_Hip
+        weight: 1
+      - path: Root/Waist/R_Hip/R_Knee
+        weight: 1
+      - path: Root/Waist/R_Hip/R_Knee/R_Ankle
+        weight: 1
+      - path: Root/Waist/R_Hip/R_Knee/R_Ankle/R_Toe
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 30
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Player
+        weight: 1
+      - path: Player/Antenna
+        weight: 1
+      - path: Player/Antenna/transform2
+        weight: 1
+      - path: Player/Antenna1
+        weight: 1
+      - path: Player/Ball
+        weight: 1
+      - path: Player/Ball/transform1
+        weight: 1
+      - path: Player/Ball1
+        weight: 1
+      - path: Player/Body
+        weight: 1
+      - path: Player/Head
+        weight: 1
+      - path: Player/Jaw
+        weight: 1
+      - path: Player/L_Antenna
+        weight: 1
+      - path: Player/L_Antenna1
+        weight: 1
+      - path: Player/L_Arm
+        weight: 1
+      - path: Player/L_Arm1
+        weight: 1
+      - path: Player/L_Leg
+        weight: 1
+      - path: Player/L_Leg1
+        weight: 1
+      - path: Player/L_Screw
+        weight: 1
+      - path: Player/L_Screw1
+        weight: 1
+      - path: Player/L_Shoe
+        weight: 1
+      - path: Player/L_Shoe1
+        weight: 1
+      - path: Player/Neck
+        weight: 1
+      - path: Player/polySurface1
+        weight: 1
+      - path: Player/R_Eye
+        weight: 1
+      - path: Player/R_Eye1
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Waist
+        weight: 1
+      - path: Root/Waist/Bottom_Spine
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand/L_First_1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand/L_First_1/L_First_top
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand/L_Last_1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand/L_Last_1/L_Last_top
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand/L_Middle_1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/L_Clavicle/L_Shoulder/L_Elbow/L_Wrist/L_Hand/L_Middle_1/L_Middle_top
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/Neck 1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/Neck 1/Head 1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/Neck 1/Head 1/Jaw 1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/Neck 1/Head 1/Jaw 1/Jaw_Top
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/Neck 1/Head 1/Top_Head
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/Neck 1/Head 1/Top_Head/Tip_Head
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand/R_First_1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand/R_First_1/R_First_Top
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand/R_Last_1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand/R_Last_1/R_Last_Top
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand/R_Middle_1
+        weight: 1
+      - path: Root/Waist/Bottom_Spine/Top_Spine/R_Clavicle/R_Shoulder/R_Elbow/R_Wrist/R_Hand/R_Middle_1/R_Middle_Top
+        weight: 1
+      - path: Root/Waist/L_Hip
+        weight: 1
+      - path: Root/Waist/L_Hip/L_Knee
+        weight: 1
+      - path: Root/Waist/L_Hip/L_Knee/L_Ankle
+        weight: 1
+      - path: Root/Waist/L_Hip/L_Knee/L_Ankle/L_TOe
+        weight: 1
+      - path: Root/Waist/R_Hip
+        weight: 1
+      - path: Root/Waist/R_Hip/R_Knee
+        weight: 1
+      - path: Root/Waist/R_Hip/R_Knee/R_Ankle
+        weight: 1
+      - path: Root/Waist/R_Hip/R_Knee/R_Ankle/R_Toe
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .5
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
