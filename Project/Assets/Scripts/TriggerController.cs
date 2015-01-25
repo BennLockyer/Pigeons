@@ -100,7 +100,7 @@ public class TriggerController : MonoBehaviour
 		//Make sure the other portal can't sent us straight back
 		targetPortal.GetComponent<TriggerController>().canUse = false;
 		//Send the player over
-		player.transform.position = new Vector3(targetPortal.transform.position.x,2.3f,targetPortal.transform.position.z);
+		player.transform.position = new Vector3(targetPortal.transform.position.x,2.0f,targetPortal.transform.position.z);
 		//Wait a short moment
 		yield return new WaitForSeconds(0.5f);
 		//Activate the target portal again (in case the player wants to come back)
