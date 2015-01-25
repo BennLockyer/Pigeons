@@ -55,6 +55,11 @@ public class CameraBehaviour : MonoBehaviour
 
 	void Update () 
     {
+        if(Input.GetKeyDown(KeyCode.Escape) == true)
+        {
+            Application.LoadLevel(0);
+        }
+
         m_v3CameraVelocity = Vector3.zero;
 
         HandleCameraBounds(m_player1Behaviour, m_player2Behaviour);
