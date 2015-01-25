@@ -23,9 +23,11 @@ public class PlayerBehaviour : MonoBehaviour
     private bool canPlay = true;
 
     private Animator m_charAnimator;
+    private AudioManager audioManager;
 
 	void Start () 
     {
+    	audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         m_pCameraBehaviour = Camera.main.GetComponent<CameraBehaviour>();
         
         m_charAnimator = gameObject.GetComponentInChildren<Animator>();
@@ -141,6 +143,7 @@ public class PlayerBehaviour : MonoBehaviour
 		if(canPlay)
 		{
 			annoyParticles.GetComponent<ParticleSystem>().Play();
+			audioManager.PlayBuzz();
 			StartCoroutine("AnnoyCooldown");
 		}
 	}

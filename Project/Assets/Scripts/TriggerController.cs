@@ -22,6 +22,13 @@ public class TriggerController : MonoBehaviour
 	//What objects will be affected by the trigger?
 	public Transform[] targetObjects;
 	
+	private AudioManager audioManager;
+	
+	void Start()
+	{
+		audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+	}
+	
 	//We enter the collider
 	void OnTriggerEnter(Collider other)
 	{
@@ -38,6 +45,8 @@ public class TriggerController : MonoBehaviour
 				{
 					targetObjects[x].GetComponent<DropObject>().Toggle();
 				}
+				audioManager.PlaySound(8);
+				audioManager.PlaySound(9);
 			}
 			else
 			{
@@ -47,7 +56,10 @@ public class TriggerController : MonoBehaviour
 				if(triggerType == TriggerType.Portal && canUse)
 				{
 					if(targetPortal != null)
+					{
+						audioManager.PlaySound(10);
 						StartCoroutine("ActivatePortal",other.gameObject);
+					}
 				}
 				//If this is the end position, let's check if the other player is done, too!
 				if(triggerType == TriggerType.EndGame)
@@ -61,6 +73,8 @@ public class TriggerController : MonoBehaviour
 				for(int x = 0; x < targetObjects.Length; ++x)
 				{
 					targetObjects[x].GetComponent<DropObject>().Toggle();
+					audioManager.PlaySound(8);
+					audioManager.PlaySound(9);
 				}
 				if(triggerType == TriggerType.Button)
 					canUse = false;
