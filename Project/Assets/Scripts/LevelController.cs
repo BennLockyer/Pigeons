@@ -31,6 +31,7 @@ public class LevelController : MonoBehaviour
 			{
 				//You have beaten the level!
 				Debug.Log ("Level complete");
+				Application.LoadLevel(0);
 			}
 	}
 }

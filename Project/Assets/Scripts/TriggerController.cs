@@ -18,9 +18,12 @@ public class TriggerController : MonoBehaviour
 
 	//If we are a portal, this is where we want to go	
 	public Transform targetPortal;
+	public Transform portalParticles;
 	
 	//What objects will be affected by the trigger?
 	public Transform[] targetObjects;
+	
+	public GameObject particles;
 	
 	private AudioManager audioManager;
 	
@@ -66,6 +69,10 @@ public class TriggerController : MonoBehaviour
 				{
 					GameObject levelController = GameObject.Find ("_LevelController");
 					levelController.GetComponent<LevelController>().CheckGame();
+					if(particles != null)
+					{	
+						particles.GetComponent<ParticleSystem>().Play();
+					}
 				}
 			}
 			if(canUse && inUse && (triggerType == TriggerType.Button || triggerType == TriggerType.Pressure))
@@ -104,6 +111,10 @@ public class TriggerController : MonoBehaviour
 			if(triggerType == TriggerType.EndGame)
 			{
 				inUse = false;
+				if(particles != null)
+				{	
+					particles.GetComponent<ParticleSystem>().Stop();
+				}
 			}
 		}
 	}
@@ -111,7 +122,9 @@ public class TriggerController : MonoBehaviour
 	IEnumerator ActivatePortal(GameObject player)
 	{
 		//Show some particles
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.2f);
+		Instantiate(portalParticles,transform.position,Quaternion.identity);
+		Instantiate(portalParticles,targetPortal.transform.position,Quaternion.identity);
 		//Make sure the other portal can't sent us straight back
 		targetPortal.GetComponent<TriggerController>().canUse = false;
 		//Send the player over
