@@ -19,6 +19,8 @@ public class PlayerBehaviour : MonoBehaviour
 	private string hMovement; 
 	private string vMovement;
 
+	private bool m_bIsController;
+
     public GameObject annoyParticles;
     private bool canPlay = true;
 
@@ -36,15 +38,36 @@ public class PlayerBehaviour : MonoBehaviour
             Debug.Log("Animator NOT FOUND");
         }
 
+		string[] joysticks = Input.GetJoystickNames ();
+
         if(gameObject.tag == "Player1")
         {
-        	hMovement = "Horizontal1";
-        	vMovement = "Vertical1";
+        	// Is there any controllers
+			if(joysticks.Length > 0)
+			{
+				hMovement = "CtrlH1";
+				vMovement = "CtrlV1";
+			}
+			else
+			{
+				// No Controllers
+				hMovement = "KeyH1";
+				vMovement = "KeyV1";
+			}
         }
         if(gameObject.tag == "Player2")
         {
-        	hMovement = "Horizontal2";
-        	vMovement = "Vertical2";
+			if(joysticks.Length > 1)
+			{
+				hMovement = "CtrlH2";
+				vMovement = "CtrlV2";
+			}
+			else
+			{
+				// No Controllers
+				hMovement = "KeyH2";
+				vMovement = "KeyV2";
+			}
         }
 	}
 
@@ -64,7 +87,9 @@ public class PlayerBehaviour : MonoBehaviour
 				p2.GetComponent<PlayerBehaviour>().CheckAnnoy();
 			}
     	}
-    	//maybe use 'getaxis' to cater for more than 8-way direction
+    	
+		// Controller 
+		//maybe use 'getaxis' to cater for more than 8-way direction
     	Vector3 temp = new Vector3(transform.position.x + (2 * Input.GetAxisRaw(hMovement)),transform.position.y,transform.position.z + (2*Input.GetAxisRaw(vMovement)));
     	float distance = Vector3.Distance(transform.position,temp);
     	

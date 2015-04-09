@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class LevelController : MonoBehaviour 
@@ -9,11 +10,16 @@ public class LevelController : MonoBehaviour
 	[HideInInspector]public Vector3 player2checkpoint;
 	public GameObject player1finish;
 	public GameObject player2finish;
+
+	public RectTransform[] uiGameInstructions;
 	
 	void Start () 
 	{
 		player1checkpoint = player1.transform.position;
 		player2checkpoint = player2.transform.position;
+
+		foreach(RectTransform gameUI in uiGameInstructions)
+			LeanTween.textAlpha (gameUI, 0.0f, 2.0f).setDelay(5.0f);
 	}
 	
 	public void UpdateCheckpoint(int player, Vector3 position)
